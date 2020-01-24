@@ -1,4 +1,5 @@
 nettune: []
+nettune_interfaces: ['{{ ansible_default_ipv4.interface }}']
 nettune_package_install: []
 nettune_pip_install: 
   - netutils-linux

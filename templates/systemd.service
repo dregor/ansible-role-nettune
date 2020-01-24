@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart={{ exec_start }} {{ '%i' if templated }}
+ExecStart={{ exec_start }} {{ ' %i' if templated }}
 RemainAfterExit=true
 
 [Install]

@@ -4,14 +4,21 @@ Example:
 ```yaml
 nettune:
   - name: autorps
-    interfaces: 
-      - "{{ ansible_default_ipv4.interface }}" 
-      - "em2"
-    autostart: false
   - name: maximize-cpu-freq
     templated: false
-  - name: something
-    exec_start: '/path/to/some/thing/some_exec_file --key1 --key2 --templated_key'
-    descritpion: 'Seper descritpion'
+  - name: IntInfo
+    exec_start: '/usr/sbin/ip a show dev'
+    descritpion: 'Show info about interface'
+    autostart: true
 ```
+you can choose interfases:
+```yaml
+nettune_interfaces: ['em1', 'em2']
+```
+
+or leave default:
+```yaml
+nettune_interfaces: ['{{ ansible_default_ipv4.interface }}']
+```
+
 ### Be careful don't make it 'autostart', before testing!
