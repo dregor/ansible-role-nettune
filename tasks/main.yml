@@ -1,0 +1,14 @@
+- pip:
+    name: "{{ nettune_pip_install }}"
+- packeage:
+    name: "{{ nettune_package_install }}"
+    
+- template:
+    src: systemd.service
+    dest: '/etc/systemd/system/{{ item.name }}{{ "@" if item.templated | default(true) }}.service'
+  vars:
+    description: '{{ item.description | default(item.name) }}'
+    exec_start: '{{ item.exec_start | default("/usr/bin/" + item.name)}}'
+    templated: '{{ item.templated | default(true) }}'
+  when: item.name in nettune_map.keys()
+  with_items: nettune 

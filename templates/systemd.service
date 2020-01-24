@@ -1,0 +1,11 @@
+[Unit]
+Description={{ desc }} {{ 'for %I' if templated }}
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart={{ exec_start }} {{ '%i' if templated }}
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
