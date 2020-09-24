@@ -1,18 +1,18 @@
 - pip:
     name: "{{ nettune_pip_install }}"
 
-- packeage:
+- package:
     name: "{{ nettune_package_install }}"
 
 - name: Make service file
   template:
     src: systemd.service
-    dest: '/etc/systemd/system/{{ item.name }}{{ "@" if item.templated | default(true) }}.service'
+    dest: '/etc/systemd/system/{{ item.name }}{{ "@" if item.templated | default(true) else ""}}.service'
   vars:
     description: '{{ item.description | default(item.name) }}'
     exec_start: '{{ item.exec_start | default("/usr/bin/" + item.name)}}'
     templated: '{{ item.templated | default(true) }}'
-  with_items: nettune 
+  with_items: "{{ nettune }}" 
 
 - name: start not templated services
   systemd:
@@ -26,7 +26,7 @@
 
 - name: start templated services
   systemd:
-    name: "{{ item[0].name + '@' + item[1].service"
+    name: "{{ item[0].name + '@' + item[1] }}.service"
     state: started
     enabled: true
   when: 
