@@ -12,7 +12,7 @@
     description: '{{ item.description | default(item.name) }}'
     exec_start: '{{ item.exec_start | default("/usr/bin/" + item.name)}}'
     templated: '{{ item.templated | default(true) }}'
-  with_items: "{{ nettune }}" 
+  with_items: "{{ nettune }}"
 
 - name: start not templated services
   systemd:

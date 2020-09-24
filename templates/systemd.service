@@ -1,10 +1,10 @@
 [Unit]
-Description={{ desc }} {{ 'for %I' if templated }}
+Description={{ description }} {{ 'for %I' if templated else "" }}
 After=network.target
 
 [Service]
 Type=oneshot
-ExecStart={{ exec_start }} {{ ' %i' if templated }}
+ExecStart={{ exec_start }} {{ '%i' if templated else "" }}
 RemainAfterExit=true
 
 [Install]

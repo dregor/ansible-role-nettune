@@ -1,4 +1,4 @@
-Makes and starts servise files for [netutils-linux][netutils-linux] or your own scripts, that must be started after reboot.
+Makes and starts servise files for [https://github.com/strizhechenko/netutils-linux] or your own scripts, that must be started after reboot.
 Example:
 
 ```yaml
